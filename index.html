@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <title>Webgazer.js + heatmap.js demo</title>
+  <style>
+    /* Make sure everything in body can go to the edge of the page */
+    /* Particularly, Chrome's default styles have an 8px margin for the body */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100vw;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .text-container {
+        white-space: pre-wrap;
+        width: 80%; /* Make text container take up 30% of container width */
+        /* margin-top: 25vh; */
+        padding: 10px;
+    }
+
+    /* Make body take up entire page */
+    body {
+      width: 50vw;
+      height: 100vh;
+    }
+    p {
+        margin-left: 20px;
+        font-size: 16px;
+    }
+    /* Make the image autoscale to the page */
+    #content {
+      width: 50vw;
+      /* margin-top: 30vh; */
+      object-fit: contain;
+    }
+    
+    /* Put the heatmap on top of the image */
+    #heatmapContainer {
+      /* The heatmap will set its own size to the window's via JS */
+      z-index: 10;
+      position: fixed !important;
+      top: 0;
+      left: 0;
+    }
+    button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    }
+
+    #prev {
+        background-color: #ccc;
+    }
+
+    #next {
+        background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- Cycle through images in the media folder -->
+  <div class="container">
+    <img id="content" src="media/img1.png" />
+    <!-- Add text to display discourse relations and captions -->
+    <div class="text-container">
+        <p id="text">Caption: </p>
+        <!-- Add a button to go through images -->
+        <button id="prevImage">Previous Image</button><button id="nextImage">Next Image</button> 
+        <br>
+        <button id="startRecording">Start Recording</button><button id="stopRecording">Stop Recording</button>
+    </div>
+  </div>
+  <button id="downloadCSV">Download Eye Gaze Data</button>
+  <button id="calibrateON">Turn On Calibration Controls</button>
+  <button id="calibrateOFF">Turn Off Calibration Controls</button>
+  <!-- <div id="heatmapContainer"></div> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
+  <script src="./webgazer.js"></script>
+  <!-- <script src="./node_modules/heatmap.js/build/heatmap.min.js"></script> -->
+  <script src="js/experiment.js"></script>
+</body>
